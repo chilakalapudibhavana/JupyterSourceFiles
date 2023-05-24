@@ -1,0 +1,328 @@
+from tkinter import *
+w=Tk()
+w.geometry("600x600")
+w.title("REGISTRATION PAGE")
+w.configure(bg="red")
+w.mainloop()
+
+from tkinter import *
+import tkinter as tk
+w=Tk()
+w.geometry("600x600")
+w.title("REGISTRATION PAGE")
+#p= tk.PhotoImage(img = "tkb.jpg")
+#p=tk.PhotoImage(file="tkb.jpg")
+w.mainloop()
+
+from tkinter import *
+import sqlite3
+import tkinter as tk
+from tkinter import ttk
+w=Tk()
+#fontStyle = tkFont.Font(family="Lucida Grande", size=20)
+def act():
+        con= sqlite3.connect('sample1.db')
+        c = con.cursor()
+        n=e1.get()
+        p=e8.get()
+        c.execute("INSERT INTO sample (name,password) VALUES (?,?)", (n,p))
+        con.commit()
+w.geometry("600x600")
+w.title("REGISTRATION PAGE")
+w.configure(bg="grey")
+Label(w,bd=4,text="Firstname",width=15,height=2,bg="grey",fg="white").grid(row=0,column=0)
+Label(w,bd=4,text="Lastname",width=15,height=2,bg="grey",fg="white").grid(row=1,column=0)
+Label(w,bd=4,text="Phone no",width=15,height=2,bg="grey",fg="white").grid(row=2,column=0)
+Label(w,bd=4,text="Gender",width=15,height=2,bg="grey",fg="white").grid(row=3,column=0)
+Label(w,bd=4,text="Email id",width=15,height=2,bg="grey",fg="white").grid(row=4,column=0)
+Label(w,bd=4,text="State",width=15,height=2,bg="grey",fg="white").grid(row=5,column=0)
+Label(w,bd=4,text="District",width=15,height=2,bg="grey",fg="white").grid(row=6,column=0)
+Label(w,bd=4,text="Password",width=15,height=2,bg="grey",fg="white").grid(row=7,column=0)
+b=Button(w,bd=4,text="Register",command=act)
+b.grid(row=8,column=1)
+e1=Entry(w,width=23,fg="grey")
+e2=Entry(w,width=23,fg="grey")
+e3=Entry(w,width=23,fg="grey")
+v=IntVar()
+e41=Radiobutton(w,text="Female",variable=v,bg="grey",fg="white",value=1)
+e42=Radiobutton(w,text="Male",variable=v,bg="grey",fg="white",value=2)
+e5=Entry(w,width=23,fg="grey")
+n = tk.StringVar()
+m = tk.StringVar()
+e6 = ttk.Combobox(w,width=20, textvariable = n)
+e6['values'] = ('State1','State2','State3','State4','State5')
+e6.grid(row=5,column=2)
+e6.current()
+e7 = ttk.Combobox(w,width=20, textvariable = m)
+e7['values'] = ('City1','City2','City3','City4','City5')
+e7.grid(row=6,column=2)
+e7.current()
+e8=Entry(w,width=23,fg="grey",show="*")
+e1.grid(row=0,column=2)
+e2.grid(row=1,column=2)
+e3.grid(row=2,column=2)
+e41.grid(row=3,column=2)
+e42.grid(row=3,column=3)
+e5.grid(row=4,column=2)
+e8.grid(row=7,column=2)
+w.mainloop()
+
+
+from tkinter import *
+
+import sqlite3
+con= sqlite3.connect('sample1.db')
+c = con.cursor()
+def act():
+        d=0
+        n=e1.get()
+        p=e2.get()
+        #a=c.execute("SELECT (password) FROM sample WHERE name=? ",(n,))
+        a=c.execute("SELECT * FROM sample")
+        con.commit()
+        x=c.fetchall()
+        print(x)
+        for i in x:
+            if i[0]==n and i[1]==p:
+                d=1
+           
+        if d==1:
+                Label(w,bd=4,text="Login successful",width=15,height=2,bg="green",fg="white").grid(row=3,column=2)
+        else:
+                Label(w,bd=4,text="worng details",width=15,height=2,bg="red",fg="white").grid(row=3,column=2)
+
+        
+w=Tk()
+w.geometry("600x600")
+w.title("REGISTRATION PAGE")
+w.configure(bg="grey")
+Label(w,bd=4,text="Name",width=15,height=2,bg="grey",fg="white").grid(row=0,column=0)
+Label(w,bd=4,text="Password",width=15,height=2,bg="grey",fg="white").grid(row=1,column=0)
+
+e1=Entry(w,width=23,fg="grey")
+e2=Entry(w,width=23,fg="grey",show="*")
+e1.grid(row=0,column=2)
+e2.grid(row=1,column=2)
+b=Button(w,bd=4,text="Login",command=act)
+b.grid(row=2,column=1)
+w.mainloop()
+#c.execute("CREATE TABLE sample(name VARCHAR(15), password VARCHAR(20))")
+
+
+import sqlite3
+con= sqlite3.connect('sample1.db')
+c = con.cursor()
+#a=c.execute("INSERT INTO sample VALUES('lalli','sahith')")
+a=c.execute("SELECT * FROM sample ")
+con.commit()
+X=c.fetchall()
+for i in X:
+    print(i)
+con.close()
+
+
+from tkinter import *
+from PIL import Image,ImageTk
+p=Tk()
+a=Image.open('tkb.jpg')
+b=a.resize((1000,700))
+t=ImageTk.PhotoImage(b)
+p.geometry("1000x700")
+p.title("DOCUMENT")
+Label(image=t).grid(row=0,column=0)
+f= Frame(p,bg="red")
+f.place(x=0,y=0)
+Label(f,bd=4,text="Password",width=10,fg="black")
+e1=Entry(f,width=10,show="*")
+e1.grid(row=0,column=2)
+b=Button(f,text="button")
+b.grid(row=1,column=1)
+'''p.configure(bg="pink")
+Label(p,bd=4,text="text",width=10,fg="black",bg="pink").grid(row=0,column=0)
+e1=Entry(p,width=10,show="*")
+e1.grid(row=0,column=2)
+b=Button(p,text="button")
+b.grid(row=1,column=1)'''
+p.mainloop()
+
+
+from tkinter import *
+from PIL import Image,ImageTk
+p=Tk()
+p.geometry("1000x700")
+p.title("Image Trail")
+a=Image.open('tkb.jpg')
+b=a.resize((1000,700))
+t=ImageTk.PhotoImage(b)
+#p.configure(bg=t)
+#bg(p,t)
+Label(image=t).grid(row=1,column=0)
+Label(text="hi",bg="white").grid(row=0,column=1)
+#p.configure(file="tkb.jpg")
+#bi = PhotoImage(a)
+#Label(p,bg=bi).grid(row=0,column=0)
+
+p.mainloop()
+
+
+
+
+from PIL import Image
+a=Image.open('tkb.jpg')
+
+a
+
+a=[('j',), ('l',)]
+b="j"
+if b in a:
+    print("true")
+else:
+    print("false")
+
+import tkinter 
+from tkinter import *
+w=Tk()
+w.title("Radio Buttons")
+w.geometry("500x500")
+Label(w,text='Language').grid(row=0,column=0)
+v=IntVar()
+r1=Radiobutton(w,text="Python",variable=v,value=1).grid(row=1,column=1)
+r2=Radiobutton(w,text="Java",variable=v,value=6).grid(row=1,column=2)
+w.mainloop()
+
+
+import sqlite3
+con=sqlite3.Connection('anna.db')
+c=con.cursor()
+c.execute("CREATE TABLE ppl(roll number,name varchar)")
+con.commit()
+con.close()
+
+import sqlite3
+con=sqlite3.Connection('anna.db')
+c=con.cursor()
+a1=7
+a2='jaans'
+#c.execute("INSERT INTO ppl(roll,name) VALUES(73,'dheeruanna')")
+c.execute('''INSERT INTO ppl(roll,name) VALUES(?,?)''',(a1,a2))
+
+con.commit()
+con.close()
+
+import sqlite3
+con=sqlite3.Connection('anna.db')
+c=con.cursor()
+c.execute('''UPDATE  ppl SET  roll=16 WHERE roll=7 ''')
+con.commit()
+con.close()
+
+import sqlite3
+con=sqlite3.Connection('anna.db')
+c=con.cursor()
+c.execute("DELETE FROM ppl WHERE roll=16")
+con.commit()
+con.close()
+
+import sqlite3
+con=sqlite3.Connection('anna.db')
+c=con.cursor()
+c.execute("SELECT * FROM ppl")
+con.commit()
+x=c.fetchall()
+for i in x:
+    print(i)
+con.close()
+
+
+import tkinter 
+from tkinter import *
+w=Tk()
+w.title("practice")
+w.geometry("400x400")
+b=Button(w,text="button").pack()
+Menubutton(w,text="menu").pack()
+OptionMenu(w,variable='b',value=3).pack()
+
+w.mainloop()
+
+
+from tkinter import *
+
+def motion(event):
+    print("Mouse position: (%s %s)" % (event.x, event.y))
+    
+master = Tk()
+master.geometry("500x500")
+l1=Label(master,text="Hai Guys",bg="green",fg="white")
+l1.bind('<Motion>',motion)
+b1=Button(master,text="Hai Guys",bg="yellow",fg="green")
+b1.bind('<Motion>',motion)
+b1.pack()
+mainloop()
+
+
+from tkinter import *
+from tkinter import ttk
+import smtplib as sm
+import math,random
+digits = "0123456789"
+OTP = ""
+for i in range(4) :
+    OTP += digits[math.floor(random.random() * 10)]
+def generate():
+        smtp_object=sm.SMTP('smtp.gmail.com',587)
+        smtp_object.ehlo()
+        smtp_object.starttls()
+        email="sakethbasava0110@gmail.com"
+        password="wkfskcmficafrbfc"
+        smtp_object.login(email,password)
+        from_address=email
+        mail=e1.get()
+        subject="your otp to login "
+        msg="Subject: "+subject+'\n'+OTP
+        smtp_object.sendmail(from_address,mail,msg)
+        smtp_object.quit()
+        
+def verify():
+    
+        n=e2.get()    
+        print("n",n)
+        print("OTP",OTP)
+        print(str(n)==OTP)
+        if str(n)==OTP:
+                top= Toplevel(w)
+                top.configure(bg="green")
+                top.geometry("250x250")
+                top.title("Login")
+                Label(top, text= "Login successful", font=('Mistral 18 bold'),bg="green",fg="white").place(x=80,y=80)
+        else:
+                top= Toplevel(w)
+                top.configure(bg="red")
+                top.geometry("300x250")
+                top.title("Login")
+                Label(top, text= "wrong details", font=('Mistral 18 bold'),bg="red",fg="white").place(x=90,y=80)
+               
+
+        
+w=Tk()
+
+w.geometry("1000x1000")
+w.title("Login PAGE")
+w.configure(bg="skyblue")
+Label(w,bd=4,text="Email",font=("Times New Roman", 20),width=5,bg="skyblue",fg="black").grid(row=0,column=0)
+Label(w,bd=4,text="OTP",font=("Times New Roman", 20),width=5,bg="skyblue",fg="black").grid(row=1,column=0)
+
+e1=Entry(w,width=23,fg="black")
+e2=Entry(w,width=23,fg="black")
+e1.grid(row=0,column=2)
+e2.grid(row=1,column=2)
+b=Button(w,bd=4,text="GENERATE OTP",command=generate)
+b.grid(row=4,column=0)
+b2=Button(w,bd=4,text="VERIFY OTP",command=verify)
+b2.grid(row=4,column=2)
+w.mainloop()
+
+
+
+
+

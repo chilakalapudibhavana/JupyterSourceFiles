@@ -1,0 +1,21 @@
+from PIL import Image 
+a=Image.open('tkb.jpg')
+
+type(a)
+
+a.show()
+
+a
+
+a.size
+a.filename
+a.format_description
+b=a.crop((1000,1000,3000,3000))
+b
+a.paste(im=b,box=(0,0))
+a
+a.resize((500,300))
+a.rotate(180)
+a.putalpha(128)
+a
+a.save("tbkremake.png")
